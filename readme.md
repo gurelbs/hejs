@@ -26,8 +26,19 @@ const { Speakly } = require('hebrew-js')
 
 ```sh
 
-const { Hebrew } = require('hebrew-js')
+const { 
+  direction, 
+  meaning, 
+  news, 
+  translate, 
+  weather 
+} = new Hebrew()
 
+direction('תל אביב','ירושלים')
+news('קורונה') 
+translate('תרגם לאנגלית אפליקציה בעברית')
+weather('פתח תקווה')
+meaning('חתול הבית')
 ```
 
 ## Author
