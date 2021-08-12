@@ -19,7 +19,7 @@ npm install hebrew-js
 
 ```sh
 
-const { Speakly } = require('hebrew-js')
+const { Hebrew } = require('hebrew-js')
 
 ```
 ## Usage
