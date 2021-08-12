@@ -3,7 +3,7 @@ const express = require('express');
 const getweather = require('../controllers/getWeather');
 const getTranslate = require('../controllers/getTranslate');
 const getMeaning = require('../controllers/getMeaning');
-const getDirection = require('../controllers/getDirection');
+const getDirection = require('../controllers/getDirection')
 const getNews = require('../controllers/getNews');
 // router
 const router = express.Router();
