@@ -1,7 +1,7 @@
 {
   "name": "hebrew-js",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "hebrew.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
