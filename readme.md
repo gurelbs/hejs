@@ -35,10 +35,11 @@ const {
 } = new Hebrew()
 
 direction('תל אביב','ירושלים')
-news('קורונה') 
+news('קורונה')
 translate('תרגם לאנגלית אפליקציה בעברית')
 weather('פתח תקווה')
-meaning('חתול הבית')
+meaning('פילוסופיה')
+
 ```
 
 ## Author
@@ -54,4 +55,3 @@ meaning('חתול הבית')
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
