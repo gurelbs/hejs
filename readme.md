@@ -13,19 +13,21 @@
 ## Install
 
 ```sh
-hebrew-js
+npm install hebrew-js
 ```
+## import 
 
+```sh
+
+const { Speakly } = require('hebrew-js')
+
+```
 ## Usage
 
 ```sh
-npm run start
-```
 
-## Run tests
+const { Hebrew } = require('hebrew-js')
 
-```sh
-npm run test
 ```
 
 ## Author

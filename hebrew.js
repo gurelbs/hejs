@@ -1,10 +1,10 @@
-const getWeather = require('./controllers/getWeather');
-const getTranslate = require('./controllers/getTranslate');
-const getMeaning = require('./controllers/getMeaning');
-const getDirection = require('./controllers/getDirection');
-const getNews = require('./controllers/getNews');
+import getWeather from './controllers/getWeather';
+import getTranslate from './controllers/getTranslate';
+import getMeaning from './controllers/getMeaning';
+import getDirection from './controllers/getDirection';
+import getNews from './controllers/getNews';
 
-class Speakly {
+class Hebrew {
   async weather(city) {
     try {
       let answer = await getWeather(city);
@@ -62,4 +62,5 @@ class Speakly {
 
 }
 
-exports.Speakly = Speakly;
+const _Hebrew = Hebrew;
+export { _Hebrew as Hebrew };
