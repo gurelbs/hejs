@@ -1,10 +1,10 @@
-const getWeather = require('./controllers/getWeather');
-const getTranslate = require('./controllers/getTranslate');
-const getMeaning = require('./controllers/getMeaning');
-const getDirection = require('./controllers/getDirection');
-const getNews = require('./controllers/getNews');
+import getWeather from './controllers/getWeather';
+import getTranslate from './controllers/getTranslate';
+import getMeaning from './controllers/getMeaning';
+import getDirection from './controllers/getDirection';
+import getNews from './controllers/getNews';
 
-export class Speakly {
+export class Hebrew {
 	async weather(city: string): Promise<string> {
 		try {
 			let answer = await getWeather(city)
@@ -61,3 +61,5 @@ export interface Direction {
 	result: string
 	direction: string
 }
+
+exports.Hebrew = Hebrew

@@ -28,7 +28,7 @@ const { Hebrew } = require('hebrew-js')
 
 const { 
   direction, 
-  meaning, 
+  meaning,  
   news, 
   translate, 
   weather 
