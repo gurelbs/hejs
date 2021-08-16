@@ -1,7 +1,8 @@
 {
   "name": "hebrew-js",
   "homepage": "https://github.com/gurelbs/hebrew-js#readme",
-  "version": "0.0.9",
+  "description": "open-source engine with API for Real-time questions In Hebrew.",
+  "version": "0.0.13",
   "main": "hebrew.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,6 +19,5 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "puppeteer": "^10.2.0"
-  },
-  "description": "open-source API for Real-time questions In Hebrew."
+  }
 }
