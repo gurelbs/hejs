@@ -2,7 +2,7 @@
   "name": "hebrew-js",
   "homepage": "https://github.com/gurelbs/hebrew-js#readme",
   "description": "open-source engine with API for Real-time questions In Hebrew.",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "hebrew.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

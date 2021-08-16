@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> open-source API for Real-time questions In Hebrew.
+> open-source engine with API for Real-time questions In Hebrew.
 
 ## Install
 
