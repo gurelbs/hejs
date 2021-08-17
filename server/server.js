@@ -6,7 +6,7 @@ const api = require("../routes/api")
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(`${__dirname}/client/build`));
+app.use(express.static(path.join(__dirname, '/client/build')));
 app.use('/api',api)
 
 app.get('*', (req, res) => {
