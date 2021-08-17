@@ -1,8 +1,8 @@
-<h1 align="center">Welcome to hebrew-js 👋</h1>
+<h1 align="center">Welcome to hejs 👋</h1>
 <h4><code>* Currently this is just a beta version</code></h4>
 <p>
-  <a href="https://www.npmjs.com/package/hebrew-js" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/hebrew-js.svg">
+  <a href="https://www.npmjs.com/package/hejs" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/hejs.svg">
   </a>
   <a href="#" target="_blank">
     <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
@@ -14,7 +14,7 @@
 ## Install
 
 ```sh
-npm install hebrew-js
+npm install hejs
 ```
 ## import 
 
