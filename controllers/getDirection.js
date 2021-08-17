@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 async function getDirection(from, to){
   let res;
-  let err = `לא מצאתי מידע על מסלול מ ${from} ל-${to}`
+  let err = `לא מצאתי מידע על מסלול מ ${from || '-'} ל-${to || '-'}`
   try {
     let url = `https://google.com/search?q=מסלול ${from} ${to}&hl=he`
     const browser = await puppeteer.launch();
@@ -34,4 +34,5 @@ async function getDirection(from, to){
   await context.close();
 }
 
-module.exports = getDirection 
+
+module.exports = getDirection

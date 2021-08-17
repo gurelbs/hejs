@@ -12,7 +12,7 @@ async function getWeather(city){
     let weather = await page.$('#wob_wc')
     if (weather){
       await page.waitForSelector('#wob_wc')
-        let weather = await page.evaluate(() => {
+        let weather = await page.evaluate( document => {
             let temp = document.querySelector("#wob_tm").innerText
             let loc = document.querySelector("#wob_loc").innerText
             let date = document.querySelector("#wob_dts").innerText
@@ -23,12 +23,12 @@ async function getWeather(city){
     } else {
       return err
     }
+    await context.close();
     return res
   } catch (error) {
     console.log(error);
   }
 
-  await context.close();
 }
 
-module.exports = getWeather 
+module.exports = getWeather;
