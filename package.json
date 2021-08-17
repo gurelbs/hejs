@@ -3,9 +3,10 @@
   "homepage": "https://github.com/gurelbs/hejs#readme",
   "description": "open-source engine with API for Real-time questions In Hebrew.",
   "version": "0.0.14",
-  "main": "hebrew.js",
+  "main": "./server/server.js",
   "scripts": {
     "start": "node ./server/server.js",
+    "heroku-postbuild": "cd client && npm i && npm run build",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\""
   },
   "keywords": ["hebrew", "api", "questions", "real-time"],
