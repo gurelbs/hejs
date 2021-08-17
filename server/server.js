@@ -10,7 +10,7 @@ app.use('/api',api)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('/app/client/build'));
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     let file = path.join('/client/build', 'index.html')
     res.sendFile(file,{ root: __dirname });
   })

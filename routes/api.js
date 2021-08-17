@@ -23,14 +23,34 @@ router.get(`/direction`, async (req, res) => {
 
 router.get(`/weather`, async (req, res) => {
   try {
-    let {place} = req.query;
-    console.log(place);
-    if(!place) res.json('לא נמצא מקום')
-    let answer = await getWeather(place);
+    let {q} = req.query;
+    if(!q) res.json('לא נמצא מקום')
+    let answer = await getWeather(q);
     res.json(answer)
   } catch (error) {
     console.log(error);
   }
 })
 
+router.get(`/translate`, async (req, res) => {
+  try {
+    let {q} = req.query;
+    if(!q) res.json('לא ניתן לתרגם')
+    let answer = await getTranslate(q);
+    res.json(answer)
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+router.get(`/meaning`, async (req, res) => {
+  try {
+    let {q} = req.query;
+    if(!q) res.json('לא נמצא מונח')
+    let answer = await getMeaning(q);
+    res.json(answer)
+  } catch (error) {
+    console.log(error);
+  }
+})
 module.exports = router
