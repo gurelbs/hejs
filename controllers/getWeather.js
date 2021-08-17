@@ -12,7 +12,7 @@ async function getWeather(city){
     let weather = await page.$('#wob_wc')
     if (weather){
       await page.waitForSelector('#wob_wc')
-        let weather = await page.evaluate( document => {
+        let weather = await page.evaluate( () => {
             let temp = document.querySelector("#wob_tm").innerText
             let loc = document.querySelector("#wob_loc").innerText
             let date = document.querySelector("#wob_dts").innerText
