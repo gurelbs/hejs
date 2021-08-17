@@ -10,9 +10,6 @@ npm-debug.log
 # testing
 /coverage
 
-# production
-/build
-
 # misc
 .env.local
 .env.development.local
