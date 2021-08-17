@@ -1,10 +1,12 @@
 const puppeteer = require('puppeteer')
+const CATCH = new Map()
 
 async function getMeaning(meaning) {
 	let res
 	let err = 'לא מצאתי מידע על' + meaning
 	try {
 		let url = `https://milog.co.il/${meaning}`
+		if (CATCH.has(url)) return CATCH.get(url)
 		const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
 		const context = await browser.createIncognitoBrowserContext()
 		const page = await context.newPage()
@@ -38,12 +40,13 @@ async function getMeaning(meaning) {
 				res = meaningResult
 			}
 		}
-		await context.close()
-		return res
-	} catch (error) {
-		console.log(error)
-		await context.close()
-	}
+		await context.close();
+    CATCH.set(url, res)
+    return res
+  } catch (error) {
+    console.log(error);
+		return error
+  }
 }
 
 module.exports = getMeaning

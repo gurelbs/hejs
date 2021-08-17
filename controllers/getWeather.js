@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer');
+const CATCH = new Map()
 
 async function getWeather(city){
   let res;
   let err = 'לא מצאתי מידע על מזג האוויר ב' + city;
   try {
     let url = `https://google.com/search?q=מזג אוויר ב${city}&hl=he`
+    if (CATCH.has(url)) return CATCH.get(url)
+
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
@@ -24,11 +27,12 @@ async function getWeather(city){
       return err
     }
     await context.close();
+    CATCH.set(url, res)
     return res
   } catch (error) {
     console.log(error);
+    return error
   }
-
 }
 
 module.exports = getWeather;

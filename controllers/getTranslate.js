@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer');
+const CATCH = new Map()
 
 async function getTranslate(translate){
   let res;
   let err = 'לא מצאתי תרגום ל' + translate;
   try {
     let url = `https://google.com/search?q=תרגם ${translate}&hl=he`
+    if (CATCH.has(url)) return CATCH.get(url)
+
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
@@ -17,12 +20,13 @@ async function getTranslate(translate){
     } else {
       return err
     }
+    await context.close();
+    CATCH.set(url, res)
     return res
   } catch (error) {
     console.log(error);
+    return error
   }
-
-  await context.close();
 }
 
 module.exports = getTranslate 

@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
-
+const CATCH = new Map()
 async function getDirection(from, to){
   let res;
   let err = `לא מצאתי מידע על מסלול מ ${from || '-'} ל-${to || '-'}`
   try {
     let url = `https://google.com/search?q=מסלול ${from} ${to}&hl=he`
+    if (CATCH.has(url)) return CATCH.get(url)
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
@@ -26,12 +27,13 @@ async function getDirection(from, to){
     } else {
       return err
     }
+    await context.close();
+    CATCH.set(url, res)
     return res
   } catch (error) {
     console.log(error);
+    return error
   }
-
-  await context.close();
 }
 
 
