@@ -8,7 +8,7 @@
     "start": "node ./server/server.js",
     "heroku-postbuild": "concurrently \"cd client\" \"npm install\" \"npm run build\"",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
-    "deploy": "concurrently \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
+    "deploy": "concurrently -m=1 \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },
   "keywords": ["hebrew", "api", "questions", "real-time"],
   "author": "Gurel Ben Shabat",
