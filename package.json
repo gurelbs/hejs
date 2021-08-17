@@ -6,8 +6,9 @@
   "main": "./server/server.js",
   "scripts": {
     "start": "node ./server/server.js",
-    "heroku-postbuild": "cd client && npm i && npm run build",
-    "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\""
+    "heroku-postbuild": "concurrently \"cd client\" \"npm insall\" \"npm run build\"",
+    "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
+    "deploy": "concurrently \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },
   "keywords": ["hebrew", "api", "questions", "real-time"],
   "author": "Gurel Ben Shabat",
