@@ -6,7 +6,7 @@
   "main": "./server/server.js",
   "scripts": {
     "start": "node ./server/server.js",
-    "heroku-postbuild": "concurrently \"cd client\" \"npm install\" \"npm run build\"",
+    "heroku-postbuild": "concurrently -m=1 \"cd client\" \"npm install\" \"npm run build --prefix client\"",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
     "deploy": "concurrently -m=1 \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },

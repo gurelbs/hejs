@@ -5,7 +5,7 @@ async function getNews(term) {
 	let err = `לא מצאתי חדשות על ${term}`
 	try {
 		let url = `https://news.google.com/search?q=${term}&hl=he&gl=IL&ceid=IL:he`
-		const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 		const context = await browser.createIncognitoBrowserContext()
 		const page = await context.newPage()
 		await page.goto(url)

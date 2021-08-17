@@ -5,7 +5,7 @@ async function getDirection(from, to){
   let err = `לא מצאתי מידע על מסלול מ ${from || '-'} ל-${to || '-'}`
   try {
     let url = `https://google.com/search?q=מסלול ${from} ${to}&hl=he`
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
     await page.goto(url);

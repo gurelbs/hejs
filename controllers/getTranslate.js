@@ -5,7 +5,7 @@ async function getTranslate(translate){
   let err = 'לא מצאתי תרגום ל' + translate;
   try {
     let url = `https://google.com/search?q=${translate}&hl=he`
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
     await page.goto(url);

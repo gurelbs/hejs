@@ -5,7 +5,7 @@ async function getWeather(city){
   let err = 'לא מצאתי מידע על מזג האוויר ב' + city;
   try {
     let url = `https://google.com/search?q=מזג אוויר ב${city}&hl=he`
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const context = await browser.createIncognitoBrowserContext()
     const page = await context.newPage();
     await page.goto(url);

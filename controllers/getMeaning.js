@@ -5,7 +5,7 @@ async function getMeaning(meaning) {
 	let err = 'לא מצאתי מידע על' + meaning
 	try {
 		let url = `https://google.com/search?q=פירוש ${meaning}&hl=he`
-		const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 		const context = await browser.createIncognitoBrowserContext()
 		const page = await context.newPage()
 		await page.goto(url)
