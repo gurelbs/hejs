@@ -4,7 +4,7 @@ const getMeaning = require('./controllers/getMeaning');
 const getDirection = require('./controllers/getDirection');
 const getNews = require('./controllers/getNews');
 
-class Hebrew {
+class HebrewJS {
   async weather(city) {
     try {
       let answer = await getWeather(city);
@@ -61,4 +61,4 @@ class Hebrew {
   }
 
 }
-exports.Hebrew = Hebrew;
+exports.HebrewJS = HebrewJS;

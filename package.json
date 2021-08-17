@@ -8,8 +8,8 @@
     "start": "node ./server/server.js",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["hebrew", "api", "questions", "real-time"],
+  "author": "Gurel Ben Shabat",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^6.2.1",
@@ -19,5 +19,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "puppeteer": "^10.2.0"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

@@ -20,7 +20,7 @@ npm install hejs
 
 ```sh
 
-const { Hebrew } = require('hebrew-js')
+const { Hebrew } = require('hejs')
 
 ```
 ## Usage
