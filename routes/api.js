@@ -53,4 +53,16 @@ router.get(`/meaning`, async (req, res) => {
     console.log(error);
   }
 })
+
+router.get(`/news`, async (req, res) => {
+  try {
+    let {q} = req.query;
+    if (!q) res.json('לא נמצאו חדשות')
+    let answer = await getNews(q);
+    res.json(answer)
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 module.exports = router
