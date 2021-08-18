@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 	},
 	appBar: {
+		backgroundColor: "rgb(40, 44, 52)",
 		transition: theme.transitions.create(['margin', 'width'], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -133,7 +134,7 @@ export default function PersistentDrawerLeft() {
 				</div>
 				<Divider />
 				<List>
-					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+					{['Docs', 'API'].map((text, index) => (
 						<ListItem button key={text}>
 							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={text} />
