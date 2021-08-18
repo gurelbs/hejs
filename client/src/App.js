@@ -11,6 +11,7 @@ function App() {
       <h1 className="display-1"><code>hejs</code></h1>
       <h6  className="text-info">a API for real-time data in hebrew.</h6>
       <div>
+        <code className="bg-secondary text-light">npm i hejs</code>
         <Button className="m-1 text-light" color="#666" variant="outlined">Get Started</Button>
         <Button className="m-1" color="#666" variant="contained">playground</Button>
       </div>

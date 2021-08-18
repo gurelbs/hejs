@@ -4,7 +4,7 @@ import getMeaning from './controllers/getMeaning';
 import getDirection from './controllers/getDirection';
 import getNews from './controllers/getNews';
 
-export class Hebrew {
+class Answers {
 	async weather(city: string): Promise<string> {
 		try {
 			let answer = await getWeather(city)
@@ -62,4 +62,4 @@ export interface Direction {
 	direction: string
 }
 
-exports.Hebrew = Hebrew
+module.exports = Answers
