@@ -18,6 +18,7 @@ router.get(`/direction`, async (req, res) => {
       res.json(answer)
     } catch (error) {
       console.log(error);
+      res.json(error)
     }
 })
 
@@ -29,6 +30,7 @@ router.get(`/weather`, async (req, res) => {
     res.json(answer)
   } catch (error) {
     console.log(error);
+    res.json(error)
   }
 })
 
@@ -40,6 +42,7 @@ router.get(`/translate`, async (req, res) => {
     res.json(answer)
   } catch (error) {
     console.log(error);
+    res.json(error)
   }
 })
 
@@ -51,6 +54,7 @@ router.get(`/meaning`, async (req, res) => {
     res.json(answer)
   } catch (error) {
     console.log(error);
+    res.json(error)
   }
 })
 
@@ -62,6 +66,7 @@ router.get(`/news`, async (req, res) => {
     res.json(answer)
   } catch (error) {
     console.log(error);
+    res.json(error)
   }
 })
 

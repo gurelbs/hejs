@@ -2,7 +2,7 @@
   "name": "hejs",
   "homepage": "https://github.com/gurelbs/hejs#readme",
   "description": "open-source engine with API for Real-time questions In Hebrew.",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "main": "./server/server.js",
   "scripts": {
     "start": "node ./server/server.js",

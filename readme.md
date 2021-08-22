@@ -56,3 +56,9 @@ meaning('פילוסופיה')
 Give a ⭐️ if this project helped you!
 
 ***
+
+
+[] Quickstart guide
+[] Endpoint definitions
+[] Code snippets
+[] Example responses

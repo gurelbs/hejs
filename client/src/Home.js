@@ -1,60 +1,38 @@
 import React from 'react'
 import clsx from 'clsx'
+// styles
+import 'react-tiger-transition/styles/main.min.css'
+// matrial-ui
+import { CssBaseline } from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import {
-	Drawer,
-	CssBaseline,
-	AppBar,
-	Toolbar,
-	List,
-	Typography,
-	Divider,
-	IconButton,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-} from '@material-ui/core'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+// import { Navigation, Route as TransitionRoute, Screen, Link, glide } from 'react-tiger-transition'
 
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
-import App from './App'
-
+// components
+import HomePageSection from './components/HomePageSection.component'
+import AppBarComponent from './components/AppBar.component'
+import DrawerComponent from './components/Drawer.component'
+import NotFound from './components/NotFound.component'
+import Documentation from './components/Documentation.component'
+import Playground from './components/Playground.component'
+// router
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
-	root: {
-		display: 'flex',
-	},
-	appBar: {
-		backgroundColor: "rgb(40, 44, 52)",
-		transition: theme.transitions.create(['margin', 'width'], {
+	content: {
+		flexGrow: 1,
+		padding: 0,
+		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 	},
-	appBarShift: {
-		width: `calc(100% - ${drawerWidth}px)`,
-		marginLeft: drawerWidth,
-		transition: theme.transitions.create(['margin', 'width'], {
+	contentShift: {
+		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.easeOut,
 			duration: theme.transitions.duration.enteringScreen,
 		}),
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	hide: {
-		display: 'none',
-	},
-	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-	},
-	drawerPaper: {
-		width: drawerWidth,
 	},
 	drawerHeader: {
 		display: 'flex',
@@ -64,27 +42,13 @@ const useStyles = makeStyles(theme => ({
 		...theme.mixins.toolbar,
 		justifyContent: 'flex-end',
 	},
-	content: {
-		flexGrow: 1,
-		padding: 0,
-		transition: theme.transitions.create('margin', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		marginLeft: -drawerWidth,
-	},
-	contentShift: {
-		transition: theme.transitions.create('margin', {
-			easing: theme.transitions.easing.easeOut,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-		marginLeft: 0,
+	mainSection: {
+		minHeight: `calc(100vh - 64px)`,
 	},
 }))
 
 export default function PersistentDrawerLeft() {
 	const classes = useStyles()
-	const theme = useTheme()
 	const [open, setOpen] = React.useState(false)
 
 	const handleDrawerOpen = () => {
@@ -95,68 +59,51 @@ export default function PersistentDrawerLeft() {
 		setOpen(false)
 	}
 
+	const routes = [
+		{
+			path: '/',
+			component: HomePageSection,
+		},
+		{
+			path: '/docs',
+			component: Documentation,
+		},
+		{
+			path: '/playground',
+			component: Playground,
+		},
+		
+	]
+
 	return (
+			<Router>
 		<div className={classes.root}>
 			<CssBaseline />
-			<AppBar
-				position='fixed'
-				className={clsx(classes.appBar, {
-					[classes.appBarShift]: open,
-				})}>
-				<Toolbar>
-					<IconButton
-						color='inherit'
-						aria-label='open drawer'
-						onClick={handleDrawerOpen}
-						edge='start'
-						className={clsx(classes.menuButton, open && classes.hide)}>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant='h6' noWrap>
-              <a style={{textDecoration:'none'}} href="/">
-                <code className="text-light">HeJS</code>
-              </a>
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer
-				className={classes.drawer}
-				variant='persistent'
-				anchor='left'
-				open={open}
-				classes={{
-					paper: classes.drawerPaper,
-				}}>
-				<div className={classes.drawerHeader}>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-					</IconButton>
-				</div>
-				<Divider />
-				<List>
-					{['Docs', 'API'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{['All mail', 'Trash', 'Spam'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-			</Drawer>
+			<AppBarComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+			<div className={classes.drawerHeader} />
 			<main
 				className={clsx(classes.content, {
 					[classes.contentShift]: open,
 				})}>
-				<App />
+					<Route
+						render={({ location }) => (
+							<TransitionGroup className='RTG'>
+								<CSSTransition key={location.key} timeout={300} classNames='page'>
+								<section className={`${classes.mainSection} mainSection`}>
+									<Switch location={location}>
+										{routes.map(({ path, component }) => (
+											<Route key={path} path={path} component={component} exact />
+												))}
+										<Route component={NotFound} />
+									</Switch>
+								</section>
+								</CSSTransition>
+							</TransitionGroup>
+						)}
+						/>
 			</main>
+			<DrawerComponent handleDrawerClose={handleDrawerClose} open={open} />
 		</div>
+				</Router>
 	)
 }
