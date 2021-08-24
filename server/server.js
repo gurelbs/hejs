@@ -26,7 +26,7 @@ app.use((req, res) => {
 	res.sendFile(file)
 })
 
-const created = async () => {
+const languageCreator = async () => {
   let count = await Language.countDocuments( (err,res) => res)
   console.log(`Language count: ${count}`)
   if (count > 0){
@@ -41,6 +41,8 @@ const created = async () => {
   })))
   console.log(`Language Uploaded Successfully!`)
 }
+
+languageCreator()
 
 let port = process.env.PORT || 4000
 app.listen(port, () => console.log(`server is listening on http://localhost:${port}`))
