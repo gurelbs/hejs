@@ -1,12 +1,13 @@
 import '../App.css'
 import React from 'react'
 import { Button } from '@material-ui/core'
-import { Container } from '@material-ui/core'
+// import { Container } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-
-export default function HomePageSection() {
+import Weather from './Weather.component'
+export default function HomePage() {
 	return (
-		<div className='main'>
+		<>
+		<div className='main container-fluid'>
 			<h1 className='big-header'>
 				<code>he.js</code>
 			</h1>
@@ -32,5 +33,7 @@ export default function HomePageSection() {
 				</div>
 			</div>
 		</div>
+		<Weather />
+		</>
 	)
 }

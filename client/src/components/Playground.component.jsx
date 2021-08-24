@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import Translate from './Translate.component'
 export default function Playground() {
 	const [services, getServices] = useState({})
 	const [result, getResult] = useState('')
@@ -22,10 +22,6 @@ export default function Playground() {
 				}))
 			)
 		}
-	}, [])
-
-	useEffect(() => {
-		console.log(services)
 	}, [services])
 
 	function hendleInputsChanges(e) {
@@ -49,25 +45,25 @@ export default function Playground() {
 		}
 		e.target.focus()
 	}
-	function Inputs({ name, text, placeholder, cb }) {
-		return (
-			<div>
-				{text}
-				<input
-					type='text'
-					name={name}
-					id={name}
-					maxLength='100'
-					value={services[name] ? services[name].search : ''}
-					onChange={e => cb(e)}
-					placeholder={placeholder}
-				/>
-				<button type='button' onClick={() => console.log(services)}>
-					הצג
-				</button>
-			</div>
-		)
-	}
+	// function Inputs({ name, text, placeholder, cb }) {
+	// 	return (
+	// 		<div>
+	// 			{text}
+	// 			<input
+	// 				type='text'
+	// 				name={name}
+	// 				id={name}
+	// 				maxLength='100'
+	// 				value={services[name] ? services[name].search : ''}
+	// 				onChange={e => cb(e)}
+	// 				placeholder={placeholder}
+	// 			/>
+	// 			<button type='button' onClick={() => console.log(services)}>
+	// 				הצג
+	// 			</button>
+	// 		</div>
+	// 	)
+	// }
 	async function handleData(type) {
 		let url = `${services[type].url}?q=${services[type].search}`
 		if (url) {
@@ -154,6 +150,7 @@ export default function Playground() {
 			<div className='container-fluid bg-light text-dark h-50 justify-content-center align-items-center d-flex'>
 				<h1 className='p-3 text-light text-center bg-dark'>{result}</h1>
 			</div>
+			<Translate/>
 		</div>
 	)
 }

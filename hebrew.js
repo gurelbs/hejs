@@ -4,7 +4,6 @@ const getMeaning = require('./controllers/getMeaning');
 const getDirection = require('./controllers/getDirection');
 const getNews = require('./controllers/getNews');
 
-
 class Answers {
   async weather(city) {
     try {

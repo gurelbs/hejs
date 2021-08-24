@@ -4,21 +4,22 @@ import clsx from 'clsx'
 import 'react-tiger-transition/styles/main.min.css'
 // matrial-ui
 import { CssBaseline } from '@material-ui/core'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+// import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 // import { Navigation, Route as TransitionRoute, Screen, Link, glide } from 'react-tiger-transition'
 
 // components
-import HomePageSection from './components/HomePageSection.component'
+import HomePage from './components/HomePage.component'
 import AppBarComponent from './components/AppBar.component'
 import DrawerComponent from './components/Drawer.component'
 import NotFound from './components/NotFound.component'
 import Documentation from './components/Documentation.component'
-import Playground from './components/Playground.component'
+import Playground from './components/Playground.component';
+// import Section from './components/Section.component';
 // router
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-const drawerWidth = 240
+// const drawerWidth = 240
 const useStyles = makeStyles(theme => ({
 	content: {
 		flexGrow: 1,
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	mainSection: {
 		minHeight: `calc(100vh - 64px)`,
+		scroll: 'auto'
 	},
 }))
 
@@ -62,7 +64,7 @@ export default function PersistentDrawerLeft() {
 	const routes = [
 		{
 			path: '/',
-			component: HomePageSection,
+			component: HomePage,
 		},
 		{
 			path: '/docs',
@@ -89,11 +91,16 @@ export default function PersistentDrawerLeft() {
 						render={({ location }) => (
 							<TransitionGroup className='RTG'>
 								<CSSTransition key={location.key} timeout={300} classNames='page'>
-								<section className={`${classes.mainSection} mainSection`}>
+								<section className={`${classes.mainSection} mainSection container-fluid`}>
 									<Switch location={location}>
 										{routes.map(({ path, component }) => (
-											<Route key={path} path={path} component={component} exact />
-												))}
+											<Route 
+												key={path} 
+												path={path} 
+												component={component} 
+												exact 
+											/>
+										))}
 										<Route component={NotFound} />
 									</Switch>
 								</section>

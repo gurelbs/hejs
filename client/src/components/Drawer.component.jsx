@@ -93,7 +93,7 @@ export default function DrawerComponent({handleDrawerClose, open}) {
 				<Divider />
 				<List>
 					{itemsList.map((item, index) => (
-							<Link className={classes.link} to={item.link}>
+							<Link key={index} className={classes.link} to={item.link}>
 						<ListItem button key={item.name} className={classes.icon}>
 							<ListItemIcon >{index % 2 === 0 ? <InboxIcon/> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={item.name} />
