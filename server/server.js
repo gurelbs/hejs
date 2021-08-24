@@ -10,17 +10,19 @@ const prod = process.env.NODE_ENV === 'production'
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static('client/build'))
 app.use('/api', api)
 
 app.use((req, res) => {
-	let file = path.join(__dirname, prod ? '../client/build' : '../client/public', '404.html')
+	let file = path.join(__dirname, prod 
+    ? '../client/build' 
+    : '../client/public', '404.html')
 	res.sendFile(file)
 })
 
 if (prod) {
-	app.use(express.static('client/build'))
 	app.get('/*', (req, res) => {
-		let file = path.join(__dirname, '/client/build', 'index.html')
+		let file = path.join('/app/client/build', 'index.html')
 		res.sendFile(file)
 	})
 }
