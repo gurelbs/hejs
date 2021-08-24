@@ -14,14 +14,14 @@ app.use('/api', api)
 
 app.use((req, res) => {
 	res.status(404)
-	let file = path.join(__dirname, prod ? '/app/client/build' : '../client/public', '404.html')
+	let file = path.join(__dirname, prod ? '../client/build' : '../client/public', '404.html')
 	res.sendFile(file)
 })
 
 if (prod) {
-	app.use(express.static('/app/client/build'))
+	app.use(express.static('../client/build'))
 	app.get('/*', (req, res) => {
-		let file = path.join('/client/build', 'index.html')
+		let file = path.join('../client/build', 'index.html')
 		res.sendFile(file)
 	})
 }
