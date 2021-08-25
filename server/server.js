@@ -3,10 +3,11 @@ const cors = require('cors')
 const app = express()
 const path = require('path')
 const api = require('../routes/api')
+require("dotenv").config({ path: "./../.env" });
 require('./../mongoose')
-const {Language} = require('./../modules/Languages')
-const getLanguages = require('./../controllers/translate/getLanguages')
+const { languageCreator } = require('./../utils/languageCreator')
 const prod = process.env.NODE_ENV === 'production'
+languageCreator()
 
 app.use(cors())
 app.use(express.json())
@@ -26,22 +27,6 @@ if (prod) {
 		res.sendFile(file)
 	})
 }
-const languageCreator = async () => {
-  let count = await Language.countDocuments( (err,res) => res)
-  console.log(`Language count: ${count}`)
-  if (count > 0){
-    console.log(`Language already created.`)
-    return
-  }
-  let language = await getLanguages()
-  Language.collection.insertMany(
-    language.map( lang => ({
-      name: Object.keys(lang)[0],
-      code: Object.values(lang)[0]
-  })))
-  console.log(`Language Uploaded Successfully!`)
-}
 
-languageCreator()
 let port = process.env.PORT || 4000
 app.listen(port, () => console.log(`server is listening on http://localhost:${port}`))
