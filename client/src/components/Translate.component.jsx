@@ -38,8 +38,8 @@ export default function Translate() {
 	}
 
 	return (
-		<div>
-			<h2>Translate</h2>
+		<div className="translate-container card bg-dark">
+			<h2 className="text-center">Translate</h2>
 			<input
 				type='q'
 				name='q'
