@@ -9,15 +9,14 @@ const getNews = require('../controllers/getNews');
 const {Language} = require('./../modules/Languages');
 const router = express.Router();
 
-
 router.get(`/direction`, async (req, res) => {
     try {
       let {from, to} = req.query;
-      if(!from && !to) res.json('לא נמצא מוצא ויעד')
-      if(!from) res.json('לא נמצא מוצא ')
-      if(!to) res.json('לא נמצא יעד')
+      if(!from && !to) return res.json('לא נמצא מוצא ויעד')
+      else if(!from) return res.json('לא נמצא מוצא ')
+      else if(!to) return res.json('לא נמצא יעד')
       let answer = await getDirection(from, to);
-      res.json(answer)
+      return res.json(answer)
     } catch (error) {
       console.log(error);
       res.json(error)
@@ -27,9 +26,9 @@ router.get(`/direction`, async (req, res) => {
 router.get(`/weather`, async (req, res) => {
   try { 
     let {q} = req.query;
-    if(!q) res.json('לא נמצא מקום')
+    if(!q) return res.json('לא נמצא מקום')
     let answer = await getWeather(q);
-    res.json(answer)
+    return res.json(answer)
   } catch (error) {
     console.log(error);
     res.json(error)
@@ -38,7 +37,8 @@ router.get(`/weather`, async (req, res) => {
 router.get(`/languages`, async (req, res) => {
   try {
     let answer = await Language.find()
-    res.json(answer)
+    if (!answer.length) return res.json('לא נמצאו שפות')
+    return res.json(answer)
   } catch (error) {
     console.log(error);
     res.json(error)
@@ -59,7 +59,7 @@ router.get(`/translate`, async (req, res) => {
 router.get(`/meaning`, async (req, res) => {
   try {
     let {q} = req.query;
-    if(!q) res.json('לא נמצא מונח')
+    if(!q) return res.json('לא נמצא מונח')
     let answer = await getMeaning(q);
     res.json(answer)
   } catch (error) {
@@ -71,7 +71,7 @@ router.get(`/meaning`, async (req, res) => {
 router.get(`/news`, async (req, res) => {
   try {
     let {q} = req.query;
-    if (!q) res.json('לא נמצאו חדשות')
+    if (!q) return res.json('לא נמצאו חדשות')
     let answer = await getNews(q);
     res.json(answer)
   } catch (error) {
