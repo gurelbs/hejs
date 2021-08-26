@@ -3,7 +3,7 @@ import Quill from 'quill';
 import "quill/dist/quill.snow.css" 
 import {useParams} from 'react-router-dom'
 import { io } from 'socket.io-client'
-
+import './editor.css'
 const TOOLBAR_OPTIONS = [
     ['bold', 'italic', 'underline', 'strike'],       // toggled buttons
     ['blockquote', 'code-block'],                    // blocks
@@ -73,6 +73,8 @@ export default function VoiceEditor() {
         editor.classList.add('editor-container')
         wrapp.append(editor)
         let q = new Quill(editor, { theme: "snow", modules: { toolbar: TOOLBAR_OPTIONS }})
+        q.format('direction', 'rtl');
+        q.format('align', 'right');
         q.disable()
         q.setText('טוען...')
         setQuill(q)
