@@ -18,7 +18,7 @@ const TOOLBAR_OPTIONS = [
 	[{ header: [1, 2, 3, 4, 5, 6, false] }], // header dropdown
 	[{ color: [] }, { background: [] }], // dropdown with defaults
 	[{ font: [] }], // font family
-	[{ align: [] }], // text align
+	[{ align: ['right'] }], // text align
 	['clean'], // remove formatting
 ]
 
@@ -29,7 +29,7 @@ export default function VoiceEditor() {
 	const [editorMode, setEditorMode] = useState('')
 	const { id: documentId } = useParams()
 	const ENDPOINT =
-		process.env.NODE_ENV === 'prodection' ? 'https://hejs.cf' : 'http://localhost:4000'
+		process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://hejs.cf'
 	const commands = [
 		{
 			command: 'כתיבה',
@@ -40,7 +40,7 @@ export default function VoiceEditor() {
 			callback: mode => setEditorMode('עריכה'),
 		},
 		{
-			command: 'שורה חדשה',
+			command: 'עבור שורה',
 			callback: () => EditorNewLine(),
 		},
     {
@@ -135,7 +135,9 @@ export default function VoiceEditor() {
 		if (!quill || !socket) return
     if (editorMode === 'עריכה'){
       console.log('מצב עריכה פעיל')
+      resetTranscript()
       quill.insertText(quill.getLength(), '\n')
+      quill.focus()
     }
 	}
   function DeleteAllEditorText(){
@@ -149,8 +151,14 @@ export default function VoiceEditor() {
       'כתיבה',
       'שורה חדשה'
     ]
-    resetWords.some( word => finalTranscript.includes(word) ? resetTranscript() : null)
-  },[finalTranscript])
+    const reset = resetWords.some( word => finalTranscript.includes(word) || transcript.includes(word))
+    
+    return () => {
+      if (reset){
+        resetTranscript()
+      }
+    }
+  },[finalTranscript,transcript])
 	useEffect(() => {
 		if (!quill || !socket) return
 		if (editorMode === 'כתיבה') {
@@ -187,6 +195,7 @@ export default function VoiceEditor() {
 	return (
 		<div className='text-center bg-light text-dark'>
 			<div className='reco-btn'>
+        <p>מצב נוכחי: {editorMode}</p>
 				<button onClick={!listening ? reco.start : reco.abort}>
 					{listening ? 'הפסקת' : 'התחלת'} תמלול קולי
 				</button>
