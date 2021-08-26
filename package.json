@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./server/server.js",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
-    "build-client": "concurrently \"cd client\" \"npm install\" \"rm -rf /build\" \"npm run build\"",
+    "build-client": "concurrently \"cd client && rm -rf /build\" \"npm install\" \"npm run build\"",
     "deploy": "concurrently -m=1 \"npm run build-client\" \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },
   "keywords": [
