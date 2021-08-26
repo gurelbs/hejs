@@ -20,7 +20,7 @@ npm install hejs
 
 ```sh
 
-const { Hebrew } = require('hejs')
+const { Answers } = require('hejs')
 
 ```
 ## Usage
@@ -33,16 +33,16 @@ const {
   news, 
   translate, 
   weather 
-} = new Hebrew()
+} = new Answers()
 
 direction('תל אביב','ירושלים')
 news('קורונה')
-translate('תרגם לאנגלית אפליקציה בעברית')
+translate('hello world','עברית')
 weather('פתח תקווה')
 meaning('פילוסופיה')
 
 ```
-
+ 
 ## Author
 
 👤 **Gurel Ben Shabat**

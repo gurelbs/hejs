@@ -14,7 +14,9 @@ import AppBarComponent from './components/AppBar.component'
 import DrawerComponent from './components/Drawer.component'
 import NotFound from './components/NotFound.component'
 import Documentation from './components/Documentation.component'
-import Playground from './components/Playground.component';
+import Playground from './components/Playground.component'
+import VoiceEditor from './components/voiceEditor/VoiceEditor'
+import VoiceEditorHomePage from './components/voiceEditor/VoiceEditorHomePage'
 // import Section from './components/Section.component';
 // router
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -45,11 +47,12 @@ const useStyles = makeStyles(theme => ({
 	},
 	mainSection: {
 		minHeight: `calc(100vh - 64px)`,
-		scroll: 'auto'
+		alignItems: 'center',
+		scroll: 'auto',
 	},
 }))
 
-export default function PersistentDrawerLeft() {
+export default function App() {
 	const classes = useStyles()
 	const [open, setOpen] = React.useState(false)
 
@@ -74,43 +77,46 @@ export default function PersistentDrawerLeft() {
 			path: '/playground',
 			component: Playground,
 		},
-		
+		{
+			path: '/editor',
+			component: VoiceEditorHomePage,
+		},
+		{
+			path: '/editor/:id',
+			component: VoiceEditor,
+		},
 	]
 
 	return (
-			<Router>
-		<div className={classes.root}>
-			<CssBaseline />
-			<AppBarComponent handleDrawerOpen={handleDrawerOpen} open={open} />
-			<div className={classes.drawerHeader} />
-			<main
-				className={clsx(classes.content, {
-					[classes.contentShift]: open,
-				})}>
-					<Route
-						render={({ location }) => (
-							<TransitionGroup className='RTG'>
+		<Router>
+			<div className={classes.root}>
+				<CssBaseline />
+				<AppBarComponent handleDrawerOpen={handleDrawerOpen} open={open} />
+				<div className={classes.drawerHeader} />
+				<Route
+					render={({ location }) => (
+						<main
+							className={clsx(classes.content, {
+								[classes.contentShift]: open,
+							})}>
+							<TransitionGroup>
 								<CSSTransition key={location.key} timeout={300} classNames='page'>
-								<section className={`${classes.mainSection} mainSection container-fluid`}>
-									<Switch location={location}>
-										{routes.map(({ path, component }) => (
-											<Route 
-												key={path} 
-												path={path} 
-												component={component} 
-												exact 
-											/>
-										))}
-										<Route component={NotFound} />
-									</Switch>
-								</section>
+									<section className={`${classes.mainSection} mainSection `}>
+										<Switch location={location}>
+											{routes.map(({ path, component }) => (
+												<Route key={path} path={path} component={component} exact />
+											))}
+
+											<Route component={NotFound} />
+										</Switch>
+									</section>
 								</CSSTransition>
 							</TransitionGroup>
-						)}
-						/>
-			</main>
-			<DrawerComponent handleDrawerClose={handleDrawerClose} open={open} />
-		</div>
-				</Router>
+						</main>
+					)}
+				/>
+				<DrawerComponent handleDrawerClose={handleDrawerClose} open={open} />
+			</div>
+		</Router>
 	)
 }

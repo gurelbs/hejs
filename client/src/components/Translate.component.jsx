@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-
+import './translate-container.css'
 
 export default function Translate() {
   const [disableBtn, setDisableBtn] = useState(false)
@@ -25,6 +25,10 @@ export default function Translate() {
       let {data}  = await axios.get(`http://localhost:4000/api/translate?q=${q}&to=${toLangCode}`, {
         cancelToken: source.token
       })
+			if (data.translate){
+				const speak = new SpeechSynthesisUtterance(data.translate)
+				speechSynthesis.speak(speak)
+			}
       setAnswers(data)
       setDisableBtn(false)
     } catch (error) {
@@ -38,8 +42,10 @@ export default function Translate() {
 	}
 
 	return (
-		<div className="translate-container card bg-dark">
-			<h2 className="text-center">Translate</h2>
+		<div className="translate-container bg-dark container-fluid text-center">
+			<h2 className="my-5">תרגום חופשי</h2>
+			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate</code>
+			<p></p>
 			<input
 				type='q'
 				name='q'

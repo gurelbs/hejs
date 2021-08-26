@@ -2,155 +2,80 @@ import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Translate from './Translate.component'
-export default function Playground() {
-	// const [services, getServices] = useState({})
-	// const [result, getResult] = useState('')
-	// useEffect(() => {
-	// 	if (!services) {
-	// 		let servicesNames = ['news', 'meaning', 'translate', 'weather', 'direction']
-	// 		return servicesNames.map(service =>
-	// 			getServices(services => ({
-	// 				...services,
-	// 				[services]: {
-	// 					key: service,
-	// 					name: service,
-	// 					search: '',
-	// 					url: `https://hejs./cf/api/${service}`,
-	// 					method: 'GET',
-	// 					response: {},
-	// 				},
-	// 			}))
-	// 		)
-	// 	}
-	// }, [services])
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-	// function hendleInputsChanges(e) {
-	// 	if (!services[e.target.name]) {
-	// 		getServices({
-	// 			...services,
-	// 			[e.target.name]: {
-	// 				key: e.target.name,
-	// 				name: e.target.name,
-	// 				search: '',
-	// 				url: `http://localhost:4000/api/${e.target.name}`,
-	// 				method: 'GET',
-	// 				response: {},
-	// 			},
-	// 		})
-	// 	} else {
-	// 		getServices({
-	// 			...services,
-	// 			[e.target.name]: { ...services[e.target.name], search: e.target.value },
-	// 		})
-	// 	}
-	// 	e.target.focus()
-	// }
-	// function Inputs({ name, text, placeholder, cb }) {
-	// 	return (
-	// 		<div>
-	// 			{text}
-	// 			<input
-	// 				type='text'
-	// 				name={name}
-	// 				id={name}
-	// 				maxLength='100'
-	// 				value={services[name] ? services[name].search : ''}
-	// 				onChange={e => cb(e)}
-	// 				placeholder={placeholder}
-	// 			/>
-	// 			<button type='button' onClick={() => console.log(services)}>
-	// 				הצג
-	// 			</button>
-	// 		</div>
-	// 	)
-	// }
-	// async function handleData(type) {
-	// 	let url = `${services[type].url}?q=${services[type].search}`
-	// 	if (url) {
-	// 		let { data } = await axios.get(url)
-	// 		console.log(data)
-	// 		getResult(JSON.stringify(data))
-	// 	}
-	// }
-	return (
-		<div className='container-fluid'>
-			{/* <div className='container h-50'>
-				<div className='row'>
-					<div className='col-12'>
-						<div>
-							get
-							<select onChange={e => getCurrentService(e.target.value)} className=''>
-								<option />
-								{servicesNames.map((service, i) => (
-									<option key={i} value={service}>
-										{service}
-									</option>
-								))}
-							</select>
-						</div>
-						end point:
-						<Link className='link' to={`/api/${currentService}`}>
-							https://hejs.cf/api/{currentService}
-						</Link>
-					</div>
-					<div>
-						<input
-							type='text'
-							name='weather'
-							id='weather'
-							value={services['weather'] ? services['weather'].search : ''}
-							onChange={hendleInputsChanges}
-							placeholder='מזג אוויר'
-						/>
-						<button type='button' onClick={() => handleData('weather')}>
-							הצג
-						</button>
-						<div>
-							<input
-								type='text'
-								name='translate'
-								id='translate'
-								value={services['translate'] ? services['translate'].search : ''}
-								onChange={hendleInputsChanges}
-								placeholder='תרגום'
-							/>
-							<button type='button' onClick={() => handleData('translate')}>
-								הצג
-							</button>
-						</div>
-						<div>
-							<input
-								type='text'
-								name='meaning'
-								id='meaning'
-								value={services['meaning'] ? services['meaning'].search : ''}
-								onChange={hendleInputsChanges}
-								placeholder='משמעות'
-							/>
-							<button type='button' onClick={() => handleData('meaning')}>
-								הצג
-							</button>
-						</div>
-						<div>
-							<input
-								type='text'
-								name='news'
-								id='news'
-								value={services['news'] ? services['news'].search : ''}
-								onChange={hendleInputsChanges}
-								placeholder='חדשות'
-							/>
-							<button type='button' onClick={() => handleData('news')}>
-								הצג
-							</button>
-						</div>
-					</div>
-				</div>
-			</div> */}
-			{/* <div className='container-fluid bg-light text-dark h-50 justify-content-center align-items-center d-flex'>
-				<h1 className='p-3 text-light text-center bg-dark'>{result}</h1>
-			</div> */}
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={0}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function Playground() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" className="bg-dark">
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tab label="תרגום" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
 			<Translate/>
-		</div>
-	)
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+    </div>
+  );
 }

@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 import Weather from './Weather.component'
 export default function HomePage() {
 	return (
-		<>
-		<div className='main container-fluid'>
+		<div className='main'>
 			<h1 className='big-header'>
 				<code>he.js</code>
 			</h1>
@@ -25,6 +24,11 @@ export default function HomePage() {
             playground
 					</Link>
 				</Button>
+				<Button className='m-1' color='secondary' variant='outlined'>
+					<Link to='/editor' className='text-decoration-none text-light'>
+						עורך טקסט קולי
+					</Link>
+				</Button>
 			</div>
 			<div>
 				<div className="m-1 p-3">
@@ -32,8 +36,7 @@ export default function HomePage() {
 					<code className="h4">npm i hejs</code>
 				</div>
 			</div>
+			{/* <Weather /> */}
 		</div>
-		<Weather />
-		</>
 	)
 }
