@@ -8,7 +8,7 @@
     "start": "node ./server/server.js",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
     "heroku-postbuild": "cd client  npm install  npm run build",
-    "deploy": "concurrently -m=1 \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
+    "deploy": "concurrently -m=1 \"cd client && npm run build\" \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },
   "keywords": [
     "hebrew",
