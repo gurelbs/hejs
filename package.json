@@ -6,10 +6,9 @@
   "main": "hebrew.js",
   "scripts": {
     "start": "node ./server/server.js",
-    "heroku-postbuild": "concurrently \"npm run build-client\"",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
     "build-client": "concurrently \"cd client\" \"npm i\" \"rm -rf build\"  \"npm run build\"",
-    "deploy": "concurrently -m=1 \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
+    "deploy": "concurrently -m=1 \"npm run build-client\" \"git add .\" \"git commit -m \"updated\"\" \"git push origin main\" \"git push heroku main\""
   },
   "keywords": [
     "hebrew",
