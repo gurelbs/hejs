@@ -50,6 +50,12 @@ body {
   bottom: 0;
 
 } */
+.reco-btn {
+  position: absolute;
+  top: 15rem;
+  left: 0;
+  z-index: 1;
+}
 .big-header {
   font-size: clamp(50px,15vh,100px);
 }

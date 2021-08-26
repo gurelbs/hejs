@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 // import { Container } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import Weather from './Weather.component'
+// import Weather from './Weather.component'
 export default function HomePage() {
 	return (
 		<div className='main'>
