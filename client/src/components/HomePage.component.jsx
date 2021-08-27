@@ -1,9 +1,14 @@
 import '../App.css'
 import React from 'react'
 import { Button } from '@material-ui/core'
-// import { Container } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+
+// import { Container } from '@material-ui/core'
 // import Weather from './Weather.component'
+// import * as Realm from "realm-web";
+// const REALM_APP_ID = "hejs-ujawx"; // e.g. myapp-abcde
+// export const app = new Realm.App({ id: REALM_APP_ID });
+
 export default function HomePage() {
 	return (
 		<div className='main'>

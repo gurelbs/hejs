@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { io } from 'socket.io-client'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import Quill from 'quill'
+import Typewriter from 'typewriter-effect/dist/core';
+
 import 'quill/dist/quill.snow.css'
 import './editor.css'
 
@@ -128,7 +130,7 @@ export default function VoiceEditor() {
 
 	useEffect(() => {
 		if (!quill || !socket) return
-		if (!quill.hasFocus()) quill.focus()
+		quill.focus()
 	}, [quill])
 
 	function EditorNewLine() {
@@ -153,27 +155,20 @@ export default function VoiceEditor() {
     ]
     const reset = resetWords.some( word => finalTranscript.includes(word) || transcript.includes(word))
     
-    return () => {
-      if (reset){
-        resetTranscript()
-      }
-    }
+		if (reset){
+			resetTranscript()
+		}
+
   },[finalTranscript,transcript])
 	useEffect(() => {
 		if (!quill || !socket) return
-		if (editorMode === 'כתיבה') {
-			console.log('מצב כתיבה פעיל')
-      quill.focus()
+		if (finalTranscript){
 			let quillLength = quill.getLength() - 1
 			quill.insertText(
 				quillLength,
 				`${finalTranscript} `.trimStart()
 			)
 			resetTranscript()
-			quill.focus()
-		}
-    if (editorMode === 'עריכה') {
-			console.log('מצב עריכה פעיל')
 		}
 	}, [quill,editorMode,finalTranscript])
 
@@ -200,7 +195,6 @@ export default function VoiceEditor() {
 					{listening ? 'הפסקת' : 'התחלת'} תמלול קולי
 				</button>
 			</div>
-			<p>{transcript}</p>
 			<div id='container' ref={textEditorRef} />
 		</div>
 	)

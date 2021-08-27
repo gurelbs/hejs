@@ -90,6 +90,21 @@ code {
   transform: scale(1.3);
   transition: all 300ms;
 }
+
+body::-webkit-scrollbar {
+  width: clamp(5px,10px,15px);
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+
  */
 .spinner {
   border: 2px solid transparent;

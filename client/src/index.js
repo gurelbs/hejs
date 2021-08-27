@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Home';
+import HejsApp from './HejsApp';
+
 import './App.css'
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  // <React.StrictMode>
-    <App />,
-  // </React.StrictMode>,
+  // <react.StrictMode>
+    <HejsApp />,
+  // </react.StrictMode>,
   document.getElementById('root')
 );
