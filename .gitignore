@@ -9,7 +9,7 @@ npm-debug.log
 /*.env
 # testing
 /coverage
-
+/client
 # misc
 .env.local
 .env.development.local
