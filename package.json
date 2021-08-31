@@ -27,7 +27,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "hejs": "file:../hejs-NPM",
+    "hejs": "0.1.4",
     "mongoose": "^5.13.8",
     "socket.io": "^4.1.3"
   },
