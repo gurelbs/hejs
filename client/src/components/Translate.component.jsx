@@ -44,10 +44,9 @@ export default function Translate() {
 	return (
 		<div className="translate-container bg-dark container-fluid text-center">
 			<h2 className="my-5">תרגום חופשי</h2>
-			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate</code>
-			<p></p>
+			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate?q={q}</code>
+			<br />
 			<input
-				type='q'
 				name='q'
 				id='q'
 				autoFocus={true}
@@ -67,7 +66,7 @@ export default function Translate() {
 			</select>
 			<br />
 			<button disabled={disableBtn} onClick={handleTranslate}>תרגם</button>
-			{answers && answers.translate ? <p> {answers.translate}</p>  : '' }
+			{answers && answers.translate ? answers.translate  : '' }
       <ol>
         {answers.alternative && answers.alternative.map((answer,i) => <li key={i}>{answer}</li>)}
       </ol>

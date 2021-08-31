@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 // import { Link } from 'react-router-dom'
 // import axios from 'axios'
 import Translate from './Translate.component'
+import Nakdan from './Nakdan.component'
+
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,7 +25,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={0}>
-          <Typography>{children}</Typography>
+          <>{children}</>
         </Box>
       )}
     </div>
@@ -63,15 +65,15 @@ export default function Playground() {
       <AppBar position="static" className="bg-dark">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="תרגום" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="נקדן" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-			<Translate/>
+			  <Translate/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Nakdan/>
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three

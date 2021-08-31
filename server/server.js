@@ -1,15 +1,19 @@
-const express = require('express')
-const cors = require('cors')
+import dotenv from 'dotenv'
+dotenv.config({ path: './../.env' })
+import './../mongoose.js';
+import express from 'express';
+import cors from 'cors';
 const app = express()
-const path = require('path')
-const http = require('http')
+import path from 'path';
+import http from 'http';
 const server = http.createServer(app);
-const api = require('../routes/api')
-require('dotenv').config({ path: './../.env' })
-require('./../mongoose')
-const Document = require('./../modules/Document')
-const findOrCreateDoc = require('./../utils/findOrCreateDoc')
-const { languageCreator } = require('./../utils/languageCreator')
+import api from '../routes/api.js';
+import Document from './../modules/Document.js';
+import findOrCreateDoc from './../utils/findOrCreateDoc.js';
+import { languageCreator } from './../utils/languageCreator.js';
+
+import { Server }  from 'socket.io';
+
 const prod = process.env.NODE_ENV === 'production'
 const serverOptions = {
   cors: {
@@ -17,7 +21,7 @@ const serverOptions = {
       methods: ["GET", "POST"]
     }
 }
-const io = require('socket.io')(server,serverOptions);
+const io = new Server(server, serverOptions);
 languageCreator()
 
 app.use(cors())
@@ -33,10 +37,9 @@ if (prod) {
 }
 
 app.use((req, res) => {
-	let file = path.join(__dirname, prod ? '../client/build' : '../client/public', '404.html')
+	let file = path.join(path.resolve(path.dirname('')), prod ? '../client/build' : '../client/public', '404.html')
 	res.sendFile(file)
-})
-
+});
 io.on('connection', socket => {
 	try {
 		console.log('New client connected')

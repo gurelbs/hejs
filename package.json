@@ -3,7 +3,8 @@
   "homepage": "https://github.com/gurelbs/hejs#readme",
   "description": "open-source engine with API for Real-time questions In Hebrew.",
   "version": "0.0.17",
-  "main": "hebrew.js",
+  "type": "module",
+  "main": "answers.js",
   "scripts": {
     "start": "node ./server/server.js",
     "start-dev": "concurrently \"nodemon ./server/server.js\" \"cd client && npm start\"",
@@ -26,9 +27,8 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "hejs": "file:../hejs-NPM",
     "mongoose": "^5.13.8",
-    "node-fetch": "^2.6.1",
-    "puppeteer": "^10.2.0",
     "socket.io": "^4.1.3"
   },
   "engines": {

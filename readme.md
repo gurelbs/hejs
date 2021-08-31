@@ -20,7 +20,7 @@ npm install hejs
 
 ```sh
 
-const { Answers } = require('hejs')
+import { Answers } from 'hejs'
 
 ```
 ## Usage

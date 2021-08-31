@@ -1,6 +1,6 @@
-const Document = require('./../modules/Document')
+import Document from './../modules/Document.js';
 
-async function findOrCreateDoc(id,defaultData){
+export default async function findOrCreateDoc(id,defaultData){
     try {
         if (!id) return
         const doc = await Document.findById(id)
@@ -10,5 +10,3 @@ async function findOrCreateDoc(id,defaultData){
         console.log(error);
     }
 }
-
-module.exports = findOrCreateDoc
