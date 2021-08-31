@@ -2,7 +2,7 @@ import '../App.css'
 import React from 'react'
 import { Button } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-
+import Playground from './Playground.component'
 // import { Container } from '@material-ui/core'
 // import Weather from './Weather.component'
 // import * as Realm from "realm-web";
@@ -19,6 +19,9 @@ export default function HomePage() {
 				מידע בעברית בזמן אמת
 			</h6>
 			<div>
+				<div>
+				<Playground/>
+				</div>
 				<Button className='m-1' color='secondary' variant='outlined'>
 					<Link to='/docs' className='text-decoration-none text-light'>
 						Get Started
