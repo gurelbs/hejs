@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { io } from 'socket.io-client'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import Quill from 'quill'
-import Typewriter from 'typewriter-effect/dist/core';
 
 import 'quill/dist/quill.snow.css'
 import './editor.css'
