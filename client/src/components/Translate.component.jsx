@@ -15,7 +15,8 @@ export default function Translate() {
 	useEffect(() => fetchData(), [])
 
 	async function fetchData() {
-		const { data } = await axios.get('http://localhost:4000/api/languages')
+		const EP = process.env.NODE_ENV === 'production' ? 'https://hejs.cf' : 'http://localhost:4000'
+		const { data } = await axios.get(`${EP}/api/languages`)
 		setList(data)
 	}
 	async function handleTranslate() {
