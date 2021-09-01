@@ -22,14 +22,10 @@ export default function Translate() {
 	async function handleTranslate() {
     try {
       setDisableBtn(true)
-      let toLangCode = list.find(item => item.name === select) ?? select
-      let {data}  = await api.get(`/translate?q=${q}&to=${toLangCode}`, {
+      let code = list.find(item => item.code === select).code
+      let {data} = await api.get(`/translate?q=${q}&to=${code}`, {
         cancelToken: source.token
       })
-			if (data.translate){
-				const speak = new SpeechSynthesisUtterance(data.translate)
-				speechSynthesis.speak(speak)
-			}
       setAnswers(data)
       setDisableBtn(false)
     } catch (error) {
@@ -69,9 +65,18 @@ export default function Translate() {
 			<button disabled={disableBtn || q.length < 1} onClick={handleTranslate}>תרגם</button>
 			{answers.translate ? answers.translate  : '' }
       <ol>
-        {answers.alternative && answers.alternative.map((answer,i) => <li key={i}>{answer}</li>)}
+        {
+				answers.alternative && 
+				answers.alternative.map((answer,i) => <li key={i}>{answer}</li>)
+				}
       </ol>
-        {!answers.alternative.length && !answers.translate.length ? 'לא נמצאו תרגומים' : ''}
+        {
+				answers.alternative && 
+				!answers.alternative.length && 
+				!answers?.translate.length 
+				? 'לא נמצאו תרגומים' 
+				: ''
+				}
 		</div>
 	)
 }
