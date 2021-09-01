@@ -11,8 +11,11 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client  npm install npm run build",
     "git": "git add . && git commit -m \"updated\" && git push origin main",
     "deploy": "npm run git && git push heroku main"
-    },
-    "cacheDirectories": ["client/node_modules", "/node_modules"],
+  },
+  "cacheDirectories": [
+    "client/node_modules",
+    "/node_modules"
+  ],
   "keywords": [
     "hebrew",
     "api",
@@ -29,7 +32,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "hejs": "0.1.4",
+    "hejs": "^0.1.5",
     "mongoose": "^5.13.8",
     "socket.io": "^4.1.3"
   },
