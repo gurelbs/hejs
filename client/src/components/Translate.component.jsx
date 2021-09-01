@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './translate-container.css'
-
+import api from './../api/api.js'
 export default function Translate() {
   const [disableBtn, setDisableBtn] = useState(false)
   const [list, setList] = useState([])
@@ -12,18 +12,18 @@ export default function Translate() {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
 
-	useEffect(() => fetchData(), [])
+	useEffect(() => fetchLanguages(), [])
 
-	async function fetchData() {
-		const EP = process.env.NODE_ENV === 'production' ? 'https://hejs.cf' : 'http://localhost:4000'
-		const { data } = await axios.get(`${EP}/api/languages`)
+	async function fetchLanguages() {
+		const { data } = await api.get(`/languages`)
+		if (!data) return
 		setList(data)
 	}
 	async function handleTranslate() {
     try {
       setDisableBtn(true)
       let toLangCode = list.find(item => item.name === select) ?? select
-      let {data}  = await axios.get(`http://localhost:4000/api/translate?q=${q}&to=${toLangCode}`, {
+      let {data}  = await api.get(`/translate?q=${q}&to=${toLangCode}`, {
         cancelToken: source.token
       })
 			if (data.translate){
@@ -43,9 +43,9 @@ export default function Translate() {
 	}
 
 	return (
-		<div className="translate-container bg-dark container-fluid text-center">
+    <div className="bg-dark container-fluid text-center d-flex flex-column ">
 			<h2 className="my-5">תרגום חופשי</h2>
-			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate?q={q}</code>
+			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate?q={q}&to={select}</code>
 			<br />
 			<input
 				name='q'
@@ -66,13 +66,12 @@ export default function Translate() {
 					))}
 			</select>
 			<br />
-			<button disabled={disableBtn} onClick={handleTranslate}>תרגם</button>
-			{answers && answers.translate ? answers.translate  : '' }
+			<button disabled={disableBtn || q.length < 1} onClick={handleTranslate}>תרגם</button>
+			{answers.translate ? answers.translate  : '' }
       <ol>
         {answers.alternative && answers.alternative.map((answer,i) => <li key={i}>{answer}</li>)}
       </ol>
-        {disableBtn ? <div className="spinner"/> : ''}
-        {!answers.alternative && answers.translate ? 'לא נמצאו תרגומים' : ''}
+        {!answers.alternative.length && !answers.translate.length ? 'לא נמצאו תרגומים' : ''}
 		</div>
 	)
 }

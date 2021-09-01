@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-// import { Link } from 'react-router-dom'
-// import axios from 'axios'
+// components
 import Translate from './Translate.component'
 import Nakdan from './Nakdan.component'
-
+import Weather from './Weather.component'
+import QuickAnswer from './QuickAnswer.component'
+import News from './News.component'
+// ui
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 function TabPanel(props) {
@@ -66,7 +67,9 @@ export default function Playground() {
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="תרגום" {...a11yProps(0)} />
           <Tab label="נקדן" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="תשובה מהירה" {...a11yProps(2)} />
+          <Tab label="מזג אוויר" {...a11yProps(3)} />
+          <Tab label="חדשות" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -76,7 +79,13 @@ export default function Playground() {
         <Nakdan/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <QuickAnswer/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Weather/>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <News/>
       </TabPanel>
     </div>
   );
