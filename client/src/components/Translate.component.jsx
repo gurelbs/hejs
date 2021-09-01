@@ -23,13 +23,7 @@ export default function Translate() {
     try {
 			setDisableBtn(true)
       let code = list.find(item => item.code === select).code
-			console.log({
-				"select":select,
-				"code":code,
-				url:`/translate?q=${q}&to=${code}`
-
-			})
-      let {data} = await api.get(`/translate?q=${q}&to=${code}`, {
+      let {data} = await api.get(`/translate?q=${q}&to=${code || select}`, {
         cancelToken: source.token
       })
       setAnswers(data)
@@ -50,7 +44,6 @@ export default function Translate() {
 			<code className="bg-light text-center rounded px-2 py-1">https://hejs.cf/api/translate?q={q}&to={select}</code>
 			<br />
 			<input
-				name='q'
 				id='q'
 				autoFocus={true}
 				value={q}
