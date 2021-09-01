@@ -21,8 +21,14 @@ export default function Translate() {
 	}
 	async function handleTranslate() {
     try {
-      setDisableBtn(true)
+			setDisableBtn(true)
       let code = list.find(item => item.code === select).code
+			console.log({
+				"select":select,
+				"code":code,
+				url:`/translate?q=${q}&to=${code}`
+
+			})
       let {data} = await api.get(`/translate?q=${q}&to=${code}`, {
         cancelToken: source.token
       })
